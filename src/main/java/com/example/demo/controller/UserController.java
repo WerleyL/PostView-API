@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Post;
 import com.example.demo.domain.User;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.services.UserService;
@@ -52,5 +53,11 @@ public class UserController {
         user = service.update(user);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/{id}/posts")
+        public ResponseEntity<List<Post>>findPost(@PathVariable String id){
+        User user = service.findById(id);
+        return ResponseEntity.ok(user.getPosts());
+
+        }
 
 }
